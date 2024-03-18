@@ -7,7 +7,8 @@
 /**
  * @type {import('gatsby').GatsbyNode['createPages']}
  */
-exports.createPages = async ({ actions }) => {
+
+exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
   createPage({
     path: "/using-dsg",
@@ -15,4 +16,40 @@ exports.createPages = async ({ actions }) => {
     context: {},
     defer: true,
   })
+
+  const result = await graphql(`
+    {
+      allMdx {
+        edges {
+          node {
+            id
+            internal  {
+              contentFilePath
+            }
+            frontmatter {
+              title
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) {
+    reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
+  }
+
+  // Create project pages.
+  const projects = result.data.allMdx.edges;
+
+  const projectsTemplate = require.resolve("./src/templates/projectPage.jsx");
+
+  projects.forEach(({ node }, index) => {
+    createPage({
+      path: node.frontmatter.slug,
+      component: `${projectsTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
+      context: { id: node.id },
+    });
+  });
 }

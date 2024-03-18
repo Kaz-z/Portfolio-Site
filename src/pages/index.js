@@ -8,29 +8,32 @@ import * as styles from "../components/index.module.css"
 
 const links = [
   {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial",
+    text: "Muzdex",
+    url: "muzdex",
     description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
+      "A platform to connect consumers and muslim owned businesses worldwide to promote economic growth and social impact.",
+    icon: "🌐",
   },
   {
-    text: "Examples",
-    url: "https://github.com/gatsbyjs/gatsby/tree/master/examples",
+    text: "Jummah Mode",
+    url: "jummah-mode",
     description:
-      "A collection of websites ranging from very basic to complex/complete that illustrate how to accomplish specific tasks within your Gatsby sites.",
+      "An app that helps you focus in salah by automatically silencing your phone when you enter your masjid",
+    icon: "🕌",
   },
   {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
+    text: "AI Sheikh",
+    url: "ai-sheikh",
     description:
-      "Learn how to add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
+      "Islamic expert to help you find answers quicker backed by an IslamQA trained knowledgebase",
+    icon: "📖",
   },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-  },
+  // {
+  //   text: "Build and Host",
+  //   url: "https://www.gatsbyjs.com/cloud",
+  //   description:
+  //     "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
+  // },
 ]
 
 const samplePageLinks = [
@@ -47,74 +50,69 @@ const samplePageLinks = [
 ]
 
 const moreLinks = [
-  { text: "Join us on Discord", url: "https://gatsby.dev/discord" },
   {
-    text: "Documentation",
-    url: "https://gatsbyjs.com/docs/",
+    text: "Twitter",
+    url: "https:/twitter.com/Kaz_Zia",
   },
   {
-    text: "Starters",
-    url: "https://gatsbyjs.com/starters/",
+    text: "Email",
+    url: "mailto:kaazimzia32@gmail.com",
   },
   {
-    text: "Showcase",
-    url: "https://gatsbyjs.com/showcase/",
+    text: "Calendly",
+    url: "https://calendly.com/kaazimzia/30min",
   },
-  {
-    text: "Contributing",
-    url: "https://www.gatsbyjs.com/contributing/",
-  },
-  { text: "Issues", url: "https://github.com/gatsbyjs/gatsby/issues" },
 ]
-
-const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
 
 const IndexPage = () => (
   <Layout>
     <div className={styles.textCenter}>
       <StaticImage
-        src="../images/example.png"
+        src="../images/pixelated-home-image.webp"
         loading="eager"
-        width={64}
+        width={100}
         quality={95}
         formats={["auto", "webp", "avif"]}
         alt=""
         style={{ marginBottom: `var(--space-3)` }}
+        className={styles.headerImage}
       />
       <h1>
-        Welcome to <b>Gatsby!</b>
+        I'm Kaazim - <b>A Full Stack Web Dev</b>
       </h1>
       <p className={styles.intro}>
-        <b>Example pages:</b>{" "}
+        {/* <b>Example pages:</b>{" "}
         {samplePageLinks.map((link, i) => (
           <React.Fragment key={link.url}>
             <Link to={link.url}>{link.text}</Link>
             {i !== samplePageLinks.length - 1 && <> · </>}
           </React.Fragment>
         ))}
-        <br />
-        Edit <code>src/pages/index.js</code> to update this page.
+        <br /> */}
+        I'm a passionate Software Engineer specializing in turning complex problems into elegant, scalable solutions. With a knack for Javascript, I build software that aligns with my value system
       </p>
+    </div>
+    <div className={styles.textCenter}>
+      {moreLinks.map((link, i) => (
+        <React.Fragment key={link.url}>
+          <a href={`${link.url}`}>{link.text}</a>
+          {i !== moreLinks.length - 1 && <> · </>}
+        </React.Fragment>
+      ))}
     </div>
     <ul className={styles.list}>
       {links.map(link => (
         <li key={link.url} className={styles.listItem}>
           <a
             className={styles.listItemLink}
-            href={`${link.url}${utmParameters}`}
+            href={`${link.url}`}
           >
-            {link.text} ↗
+            {link.text} {link.icon}
           </a>
           <p className={styles.listItemDescription}>{link.description}</p>
         </li>
       ))}
     </ul>
-    {moreLinks.map((link, i) => (
-      <React.Fragment key={link.url}>
-        <a href={`${link.url}${utmParameters}`}>{link.text}</a>
-        {i !== moreLinks.length - 1 && <> · </>}
-      </React.Fragment>
-    ))}
   </Layout>
 )
 

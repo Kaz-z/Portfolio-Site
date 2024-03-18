@@ -11,6 +11,8 @@
   );
   margin-bottom: var(--size-gap);
   margin-top: var(--size-gap);
+  margin-right: 10px;
+  margin-left: 20px;
 }
 
 .listItem {
@@ -51,4 +53,25 @@
 .intro {
   max-width: none;
   line-height: var(--line-height-loose);
+}
+
+@keyframes headerImageAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.headerImage {
+  transition: transform 0.3s ease;
+  animation: 1s ease-in-out 0s 3 headerImageAnimation;
+}
+
+.headerImage:hover {
+  transform: translateY(-10px);
 }
