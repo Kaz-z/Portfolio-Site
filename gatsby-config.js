@@ -12,7 +12,7 @@ module.exports = {
     title: `KMZ`,
     description: `KMZ Portfolio Site`,
     author: `@KMZ`,
-    siteUrl: ``,
+    siteUrl: `https://kmzia.netlify.app`,
   },
   plugins: [
     `gatsby-plugin-image`,
