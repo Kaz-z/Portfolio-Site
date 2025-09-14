@@ -43,7 +43,7 @@ const Layout = ({ children, isHomePage = false }) => {
             padding: `var(--space-8) var(--size-gutter) var(--space-6) var(--size-gutter)`,
           }}
         >
-          © {new Date().getFullYear()} Kaazim Zia. Built with Gatsby.
+          © {new Date().getFullYear()} Kaazim Zia.
         </footer>
       )}
     </>
