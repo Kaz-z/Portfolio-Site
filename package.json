@@ -1,5 +1,5 @@
 {
-  "name": "Kaazim Zia Portfolio",
+  "name": "kaazim-zia-portfolio",
   "private": true,
   "description": "Kaazim Zia Full Stack Developer Portfolio",
   "version": "0.1.0",
@@ -37,9 +37,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/kaz-z/portfolio-site"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/kaz-z/portfolio-site/issues"
   }
 }
