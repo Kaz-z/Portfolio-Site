@@ -29,6 +29,13 @@ const links = [
       "Islamic expert to help you find answers quicker backed by an IslamQA trained knowledgebase",
     icon: "📖",
   },
+  {
+    text: "Remedy Roots",
+    url: "remedy-roots",
+    description:
+      "A platform to discover prophetic remedies for health and wellbeing",
+    icon: "🌿",
+  },
   // {
   //   text: "Build and Host",
   //   url: "https://www.gatsbyjs.com/cloud",
@@ -149,7 +156,7 @@ const IndexPage = () => {
           textAlign: `center`,
         }}
       >
-        © {new Date().getFullYear()} Kaazim Zia. Built with Gatsby.
+        © {new Date().getFullYear()} Kaazim Zia
       </footer>
     </section>
   </Layout>
