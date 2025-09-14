@@ -11,7 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, isHomePage = false }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -24,24 +24,28 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: `var(--size-content)`,
-          padding: `var(--size-gutter)`,
-        }}
-      >
-        <main>{children}</main>
+      <Header siteTitle={'Home'} isHomePage={isHomePage} />
+      <main>
+        {children}
+      </main>
+      {!isHomePage && (
         <footer
           style={{
-            marginTop: `var(--space-5)`,
+            marginTop: `var(--space-12)`,
+            paddingTop: `var(--space-8)`,
+            paddingBottom: `var(--space-6)`,
             fontSize: `var(--font-sm)`,
+            color: `var(--color-text-secondary)`,
+            borderTop: `1px solid var(--color-border)`,
+            textAlign: `center`,
+            maxWidth: `var(--size-content)`,
+            margin: `var(--space-12) auto 0 auto`,
+            padding: `var(--space-8) var(--size-gutter) var(--space-6) var(--size-gutter)`,
           }}
         >
-          © {new Date().getFullYear()}
+          © {new Date().getFullYear()} Kaazim Zia. Built with Gatsby.
         </footer>
-      </div>
+      )}
     </>
   )
 }

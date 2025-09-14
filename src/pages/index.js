@@ -5,6 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver"
 
 const links = [
   {
@@ -52,7 +53,7 @@ const samplePageLinks = [
 const moreLinks = [
   {
     text: "Twitter",
-    url: "https:/twitter.com/Kaz_Zia",
+    url: "https://twitter.com/Kaz_Zia",
   },
   {
     text: "Email",
@@ -64,57 +65,96 @@ const moreLinks = [
   },
 ]
 
-const IndexPage = () => (
-  <Layout>
-    <div className={styles.textCenter}>
-      <StaticImage
-        src="../images/pixelated-home-image.webp"
-        loading="eager"
-        width={100}
-        quality={95}
-        formats={["auto", "webp", "avif"]}
-        alt=""
-        style={{ marginBottom: `var(--space-3)` }}
-        className={styles.headerImage}
-      />
-      <h1>
-        I'm Kaazim - <b>A Full Stack Web Dev</b>
-      </h1>
-      <p className={styles.intro}>
-        {/* <b>Example pages:</b>{" "}
-        {samplePageLinks.map((link, i) => (
-          <React.Fragment key={link.url}>
-            <Link to={link.url}>{link.text}</Link>
-            {i !== samplePageLinks.length - 1 && <> · </>}
-          </React.Fragment>
-        ))}
-        <br /> */}
-        I'm a passionate Software Engineer specializing in turning complex problems into elegant, scalable solutions. With a knack for Javascript, I build software that aligns with my value system
-      </p>
-    </div>
-    <div className={styles.textCenter}>
-      {moreLinks.map((link, i) => (
-        <React.Fragment key={link.url}>
-          <a href={`${link.url}`}>{link.text}</a>
-          {i !== moreLinks.length - 1 && <> · </>}
-        </React.Fragment>
-      ))}
-    </div>
-    <ul className={styles.list}>
-      {links.map(link => (
-        <li key={link.url} className={styles.listItem}>
-          <a
-            className={styles.listItemLink}
-            href={`${link.url}`}
+const IndexPage = () => {
+  const [projectsRef, isProjectsIntersecting, hasProjectsIntersected] = useIntersectionObserver({
+    threshold: 0.2,
+    rootMargin: '-100px 0px'
+  })
+
+  return (
+  <Layout isHomePage={true}>
+    {/* Full Viewport Hero Section */}
+    <section className={styles.heroSection}>
+      <div className={styles.heroContent}>
+        <StaticImage
+          src="../images/pixelated-home-image.webp"
+          loading="eager"
+          width={120}
+          quality={95}
+          formats={["auto", "webp", "avif"]}
+          alt="Kaazim Zia"
+          style={{ 
+            marginBottom: `var(--space-6)`,
+            background: 'transparent'
+          }}
+          className={styles.headerImage}
+          backgroundColor="transparent"
+        />
+        <h1 className={styles.heroTitle}>
+          Kaazim Zia
+        </h1>
+        <p className={styles.heroSubtitle}>
+          Full Stack Developer building software that aligns with my value system.
+        </p>
+        <div className={styles.heroSocialLinks}>
+          {moreLinks.map((link, i) => (
+            <a key={link.url} href={`${link.url}`} title={link.text}>
+              {link.text === 'Twitter' && '𝕏'}
+              {link.text === 'Email' && '📧'}
+              {link.text === 'Calendly' && '📅'}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div className={styles.scrollIndicator}>
+        ↓ Scroll to explore my work
+      </div>
+    </section>
+
+    {/* Projects Content Section */}
+    <section className={styles.contentSection}>
+      <div className={styles.projectsSection} ref={projectsRef}>
+        <h2 className={`${styles.sectionTitle} ${hasProjectsIntersected ? styles.animate : ''}`}>
+          Featured Projects
+        </h2>
+        <ul className={styles.list}>
+        {links.map((link, index) => (
+          <li 
+            key={link.url} 
+            className={`${styles.listItem} ${hasProjectsIntersected ? styles.animate : ''}`}
           >
-            {link.text} {link.icon}
-          </a>
-          <p className={styles.listItemDescription}>{link.description}</p>
-        </li>
-      ))}
-    </ul>
+            <a
+              className={styles.listItemCard}
+              href={`${link.url}`}
+            >
+              <div className={styles.listItemLink}>
+                {link.text} {link.icon}
+              </div>
+              <p className={styles.listItemDescription}>{link.description}</p>
+            </a>
+          </li>
+        ))}
+        </ul>
+      </div>
+      
+      {/* Footer */}
+      <footer
+        style={{
+          marginTop: `var(--space-12)`,
+          paddingTop: `var(--space-8)`,
+          paddingBottom: `var(--space-6)`,
+          fontSize: `var(--font-sm)`,
+          color: `var(--color-text-secondary)`,
+          borderTop: `1px solid var(--color-border)`,
+          textAlign: `center`,
+        }}
+      >
+        © {new Date().getFullYear()} Kaazim Zia. Built with Gatsby.
+      </footer>
+    </section>
   </Layout>
-)
+  )
+}
 
 /**
  * Head export to define metadata for the page

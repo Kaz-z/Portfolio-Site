@@ -9,9 +9,9 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `KMZ`,
-    description: `KMZ Portfolio Site`,
-    author: `@KMZ`,
+    title: `Kaazim Zia`,
+    description: `Kaazim Zia - Full Stack Developer Portfolio`,
+    author: `@kaazimzia`,
     siteUrl: `https://kmzia.netlify.app`,
   },
   plugins: [
@@ -29,15 +29,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Kaazim Zia - Full Stack Developer`,
+        short_name: `Kaazim Zia`,
         start_url: `/`,
-        background_color: `#663399`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
+        background_color: `#6366f1`,
+        theme_color: `#6366f1`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/pixelated-home-image.webp`, // This path is relative to the root of the site.
       },
     },
     {
