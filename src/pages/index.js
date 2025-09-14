@@ -92,10 +92,10 @@ const IndexPage = () => {
           alt="Kaazim Zia"
           style={{ 
             marginBottom: `var(--space-6)`,
-            background: 'transparent'
+            background: 'none',
+            backgroundColor: 'transparent'
           }}
           className={styles.headerImage}
-          backgroundColor="transparent"
         />
         <h1 className={styles.heroTitle}>
           Kaazim Zia

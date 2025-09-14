@@ -163,9 +163,40 @@
     background-clip: initial !important;
   }
   
-  /* Ensure the container doesn't add any background */
-  .heroSection .headerImage > div {
+  /* Ensure all nested divs don't add any background */
+  .heroSection .headerImage > div,
+  .heroSection .headerImage > div > div,
+  .heroSection .headerImage div[data-gatsby-image-wrapper],
+  .heroSection .headerImage [data-main-image] {
     background: transparent !important;
+    background-color: transparent !important;
+  }
+}
+
+/* Additional cross-browser fixes for StaticImage backgrounds */
+.heroSection .headerImage [data-gatsby-image-wrapper],
+.heroSection .headerImage [data-main-image],
+.heroSection .headerImage picture,
+.heroSection .headerImage picture > img {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* WebKit-specific fixes for iOS Chrome */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .heroSection .headerImage,
+  .heroSection .headerImage * {
+    -webkit-background-size: auto !important;
+    background-size: auto !important;
+    background: none !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+  }
+  
+  /* Force transparency on the actual image element */
+  .heroSection .headerImage img {
+    background: none !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    -webkit-background-composite: clear !important;
   }
 }
 
