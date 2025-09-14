@@ -131,9 +131,7 @@
 .heroSection .headerImage {
   background: transparent !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  /* Blend the image with the purple background */
-  mix-blend-mode: overlay;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .heroSection .headerImage:hover {
@@ -147,12 +145,28 @@
   background: transparent !important;
 }
 
-/* Target the actual img element within StaticImage */
+/* Target the actual img element within StaticImage - simplified for cross-platform compatibility */
 .heroSection .headerImage img {
   background: transparent !important;
-  /* Blend with purple background for cohesive look */
-  mix-blend-mode: soft-light;
-  filter: contrast(1.1) saturate(1.2);
+  /* Remove mix-blend-mode for iOS compatibility */
+  filter: contrast(1.05) saturate(1.1) brightness(1.05);
+}
+
+/* iOS-specific fixes for StaticImage background issues */
+@supports (-webkit-touch-callout: none) {
+  .heroSection .headerImage,
+  .heroSection .headerImage *,
+  .heroSection .headerImage img {
+    background-color: transparent !important;
+    background-image: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+  }
+  
+  /* Ensure the container doesn't add any background */
+  .heroSection .headerImage > div {
+    background: transparent !important;
+  }
 }
 
 .socialLinks {
